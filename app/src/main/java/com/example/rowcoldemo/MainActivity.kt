@@ -21,6 +21,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.layout.LastBaseline
+import androidx.compose.ui.layout.FirstBaseline
+
 
 
 class MainActivity : ComponentActivity() {
@@ -39,12 +42,22 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
-    Row(horizontalArrangement = Arrangement.SpaceEvenly,
-        modifier = modifier.width(1000.dp)) {
-        TextCell("1")
-        TextCell("2")
-        TextCell("3")
+    Row {
+        Text(
+            text = "Large Text\n\nMore Text",
+            Modifier.alignBy(FirstBaseline),
+            fontSize = 40.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Text(
+            text = "Small Text",
+            modifier = Modifier.paddingFrom(
+                alignmentLine = FirstBaseline, before = 80.dp, after = 0.dp),
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold
+        )
     }
+
 }
 
 @Composable
